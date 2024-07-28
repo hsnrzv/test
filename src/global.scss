@@ -1,0 +1,121 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import "@ionic/angular/css/display.css";
+
+/* Optional CSS utils that can be commented out */
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+
+/**
+ * Ionic Dark Mode
+ * -----------------------------------------------------
+ * For more info, please see:
+ * https://ionicframework.com/docs/theming/dark-mode
+ */
+
+@import "@ionic/angular/css/palettes/dark.always.css";
+/* @import "@ionic/angular/css/palettes/dark.class.css"; */
+/* @import "@ionic/angular/css/palettes/dark.system.css"; */
+
+/** Core SCSS required for Bootstrap **/
+@import 'bootstrap/scss/bootstrap.scss';
+
+/** Core SCSS required for mdi **/
+@import './theme/materialdesignicons';
+
+/** Core SCSS required for ol **/
+@import 'ol/ol.css';
+
+ion-modal {
+  --border-radius: 8px;
+  --box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  ::part(backdrop) {
+  background: rgba(209, 213, 219);
+  opacity: 1;
+  }
+  ion-header {
+    &.header-md{
+    box-shadow: none;
+    }
+    &.garden-overview-header {
+      .div-icon {
+        position: absolute;
+        right: 20px;
+        top: 30px;
+        ion-button {
+          --color: #ffffff;
+          --border-color: #ffffff;
+        }
+      }
+    }
+  }
+}
+
+ion-header {
+  &.header-md {
+    box-shadow: none;
+  }
+  &.garden-item-header {
+    .div-icon {
+      position: absolute;
+      right: 15px;
+      top: 15px;
+    }
+  }
+}
+
+ion-toolbar {
+  --border-width: unset!important;
+  --border-color: transparent;
+  --background: unset;
+}
+
+ion-tab-bar {
+  min-height: 60px;
+}
+
+@media screen and (max-width: 600px) {
+  ion-modal {
+    ion-header {
+      &.garden-overview-header {
+        .div-icon {
+          position: absolute;
+          right: 15px;
+          top: 60px;
+          ion-button {
+            --color: #ffffff;
+          }
+        }
+      }
+    }
+  }
+
+  ion-header {
+    &.garden-item-header {
+      .div-icon {
+        position: absolute;
+        right: 15px;
+        top: 45px;
+      }
+    }
+  }
+}

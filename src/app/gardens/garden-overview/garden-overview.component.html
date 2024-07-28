@@ -1,0 +1,164 @@
+<ion-header translucent class="garden-overview-header">
+  <ion-buttons class="div-icon">
+    <ion-button (click)="cancel()" shape="round" fill="outline">
+      <i class="mdi mdi-close"></i>
+    </ion-button>
+  </ion-buttons>
+</ion-header>
+<ion-content>
+  <ion-list>
+    <div>
+      <swiper-container
+        appSwiper
+        #swiper
+        [config]="config"
+        thumbs-swiper=".mySwiper2"
+      >
+        <swiper-slide *ngFor="let image of garden.images">
+          <div
+            class="ratio ratio-4x3"
+            [ngStyle]="{
+              background: 'url(' + image + ') no-repeat top center / contain',
+            }"
+          ></div>
+        </swiper-slide>
+      </swiper-container>
+    </div>
+    <ion-item lines="full">
+      <ion-text
+        ><h3>{{ garden.title }}</h3></ion-text
+      >
+    </ion-item>
+    <ion-item lines="full">
+      <ion-avatar slot="start">
+        <img
+          alt="Silhouette of a person's head"
+          [src]="
+            garden.owner.profileImage ||
+            'https://ionicframework.com/docs/img/demos/avatar.svg'
+          "
+        />
+      </ion-avatar>
+      <ion-label class="d-flex flex-column">
+        <span> Hosted by {{ garden.owner.firstName }} </span>
+        <ion-button style="width: 200px" class="mt-2">Message Host</ion-button>
+      </ion-label>
+    </ion-item>
+    <ion-item lines="full">
+      <div class="d-flex flex-column">
+        <ion-text color="medium"
+          >{{ garden.description.slice(0, 200) }} ...
+        </ion-text>
+        <u (click)="showPopUp($event)">show more ></u>
+      </div>
+      <ion-popover
+        #popover
+        [isOpen]="isPopoverOpen"
+        (didDismiss)="isPopoverOpen = false"
+      >
+        <ng-template>
+          <ion-header class="m-2"><h5>About this Garden</h5></ion-header>
+          <ion-text color="medium" class="m-2">{{
+            garden.description
+          }}</ion-text>
+        </ng-template>
+      </ion-popover>
+    </ion-item>
+    <ion-item lines="full">
+      <div class="d-flex flex-column">
+        <ion-text><h3>What this garden offers</h3></ion-text>
+        <div class="d-flex flex-column flex-md-row">
+          <ion-text
+            color="medium"
+            *ngIf="garden.productTypes.includes(productType.vegetable)"
+            class="mdi mdi-carrot mdi-24px fw-light"
+            ><span class="ms-2">vegetable</span></ion-text
+          >
+          <ion-text
+            color="medium"
+            *ngIf="garden.productTypes.includes(productType.fruit)"
+            class="mdi mdi-fruit-cherries mdi-24px fw-light"
+            ><span class="ms-2">fruit</span></ion-text
+          >
+          <ion-text
+            color="medium"
+            *ngIf="garden.productTypes.includes(productType.cheese)"
+            class="mdi mdi-cheese mdi-24px fw-light"
+            ><span class="ms-2">cheese</span></ion-text
+          >
+          <ion-text
+            color="medium"
+            *ngIf="garden.productTypes.includes(productType.milk)"
+            class="mdi mdi-cup mdi-24px fw-light"
+            ><span class="ms-2">milk</span></ion-text
+          >
+          <ion-text
+            color="medium"
+            *ngIf="garden.productTypes.includes(productType.beer)"
+            class="mdi mdi-glass-mug-variant mdi-24px fw-light"
+            ><span class="ms-2">beer</span></ion-text
+          >
+          <ion-text
+            color="medium"
+            *ngIf="garden.productTypes.includes(productType.wine)"
+            class="mdi mdi-glass-wine mdi-24px fw-light"
+            ><span class="ms-2">wine</span></ion-text
+          >
+        </div>
+      </div>
+    </ion-item>
+    <ion-item lines="full">
+      <div class="d-flex flex-column">
+        <ion-text>
+          <h5>Here you will stay</h5>
+        </ion-text>
+        <div id="map" class="map"></div>
+        <span>
+          {{ garden.address }}
+        </span>
+      </div>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-datetime
+        presentation="date"
+        [highlightedDates]="highlightedDates"
+        [isDateEnabled]="isDateEnabled"
+      >
+        <span slot="title">Availability</span>
+      </ion-datetime>
+    </ion-item>
+    <ion-item lines="full">
+      <div class="d-flex flex-column">
+        <h5>House rules</h5>
+        <div class="d-flex flex-column flex-md-row">
+          <ion-text
+            color="medium"
+            *ngIf="garden.rule.events"
+            class="mdi mdi-glass-flute mdi-24px fw-light"
+          >
+            <span class="ms-2">Events</span>
+          </ion-text>
+          <ion-text
+            color="medium"
+            *ngIf="garden.rule.pets"
+            class="mdi mdi-dog-side mdi-24px fw-light"
+          >
+            <span class="ms-2">Pets</span>
+          </ion-text>
+          <ion-text
+            color="medium"
+            *ngIf="garden.rule.numberOfGuest"
+            class="mdi mdi-bed mdi-24px fw-light"
+          >
+            <span class="ms-2">Max Guest {{ garden.rule.numberOfGuest }}</span>
+          </ion-text>
+        </div>
+      </div>
+    </ion-item>
+  </ion-list>
+</ion-content>
+<ion-footer>
+  <div class="d-flex">
+    <ion-button class="mx-auto w-75">Reserve</ion-button>
+  </div>
+</ion-footer>

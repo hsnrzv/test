@@ -1,0 +1,24 @@
+<ion-header class="garden-item-header">
+  <ion-text
+    [color]="clicked ? 'danger' : ''"
+    class="div-icon mdi mdi-24px cursor-pointer"
+    [ngClass]="clicked ? 'mdi-heart' : 'mdi-heart-outline'"
+    (click)="clicked = !clicked"
+  ></ion-text>
+</ion-header>
+<div class="d-flex flex-column">
+  <div>
+    <ion-img [src]="garden.images[0]"></ion-img>
+  </div>
+  <div (click)="openGardenDetail()">
+    <div class="d-flex flex-row justify-content-between mt-1 fs-6">
+      <ion-text>{{ garden.title }}</ion-text>
+      <ion-text *ngIf="garden.rate"
+        >{{ garden.rate }}<i class="mdi mdi-star ms-1"></i
+      ></ion-text>
+    </div>
+    <ion-text color="medium" class="fw-light"
+      >Hosted by {{ garden.owner.firstName }}
+    </ion-text>
+  </div>
+</div>

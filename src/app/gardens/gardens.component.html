@@ -1,0 +1,11 @@
+<ion-row
+  class="d-flex flex-sm-column flex-md-row justify-content-center justify-content-md-start overflow-scroll"
+>
+  <ion-col
+    size="auto"
+    class="mx-sm-auto mx-md-2 mt-3"
+    *ngFor="let garden of gardens$ | async"
+  >
+    <app-garden-item [garden]="garden"></app-garden-item>
+  </ion-col>
+</ion-row>

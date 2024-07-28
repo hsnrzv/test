@@ -1,0 +1,102 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button
+        (click)="cancel()"
+        shape="round"
+        fill="outline"
+        color="medium"
+      >
+        <i class="mdi mdi-close"></i>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" class="d-flex my-4" (click)="uploadPhoto()">
+        <ion-avatar class="mx-auto">
+          <img alt="Silhouette of a person's head" [src]="profileImage" />
+        </ion-avatar>
+      </ion-col>
+      <ion-col size="12">
+        <ion-input
+          labelPlacement="floating"
+          label="First Name"
+          [(ngModel)]="firstname"
+          fill="outline"
+        ></ion-input>
+      </ion-col>
+      <ion-col size="12" class="mt-2">
+        <ion-input
+          labelPlacement="floating"
+          label="Last Name"
+          [(ngModel)]="lastname"
+          fill="outline"
+        ></ion-input>
+      </ion-col>
+      <ion-col size="12" class="mt-2">
+        <ion-input
+          labelPlacement="floating"
+          label="Username"
+          [(ngModel)]="username"
+          fill="outline"
+        ></ion-input>
+      </ion-col>
+      <ion-col size="12" class="mt-2">
+        <ion-input
+          labelPlacement="floating"
+          label="Password"
+          [(ngModel)]="password"
+          fill="outline"
+          type="password"
+        >
+          <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+        </ion-input>
+      </ion-col>
+      <ion-col size="12" class="mt-2">
+        <ion-input
+          labelPlacement="floating"
+          label="Email"
+          type="email"
+          [(ngModel)]="email"
+          fill="outline"
+        ></ion-input>
+      </ion-col>
+      <ion-col size="12" class="mt-2">
+        <ion-input
+          labelPlacement="floating"
+          label="Mobile"
+          [(ngModel)]="mobile"
+          type="phone"
+          fill="outline"
+        ></ion-input>
+      </ion-col>
+      <ion-col size="12" class="mt-2">
+        <ion-input
+          labelPlacement="floating"
+          label="Address"
+          [(ngModel)]="address"
+          fill="outline"
+        ></ion-input>
+      </ion-col>
+      <ion-col size="12" class="mt-2">
+        <ion-input
+          labelPlacement="floating"
+          label="Bio"
+          [(ngModel)]="bio"
+          fill="outline"
+        ></ion-input>
+      </ion-col>
+      <ion-col size="12" *ngIf="!!errorMessage">
+        <span class="invalid-feedback" style="display: unset">{{
+          errorMessage
+        }}</span>
+      </ion-col>
+      <ion-col class="d-flex mt-4">
+        <ion-button class="mx-auto" (click)="confirm()">Sign Up</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,47 @@
+<ion-content>
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="gardens" href="/tabs/gardens">
+        <i class="mdi mdi-tree-outline mdi-24px"></i>
+        <ion-label>Gardens</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button tab="products" href="/tabs/products">
+        <i class="mdi mdi-fruit-cherries mdi-24px"></i>
+        <ion-label>Products</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button id="button-create">
+        <i class="mdi mdi-plus-circle-outline mdi-24px"></i>
+        <ion-label>Create</ion-label>
+      </ion-tab-button>
+
+      <ion-popover
+        trigger="button-create"
+        dismiss-on-select="true"
+        side="top"
+        alignment="center"
+      >
+        <ng-template>
+          <ion-list>
+            <ion-item button="true" detail="false" (click)="addGardenModal()"
+              >Garden</ion-item
+            >
+            <ion-item button="true" detail="false">Product</ion-item>
+          </ion-list>
+        </ng-template>
+      </ion-popover>
+
+      <ion-tab-button tab="profile" href="/tabs/profile">
+        <ng-container *ngIf="signedInUser$ | async as signedInUser; else login">
+          <i class="mdi mdi-account-circle-outline mdi-24px"></i>
+          <ion-label>{{ signedInUser.firstName }}</ion-label>
+        </ng-container>
+        <ng-template #login>
+          <i class="mdi mdi-login-variant mdi-24px"></i>
+          <ion-label>Login</ion-label>
+        </ng-template>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+</ion-content>

@@ -1,0 +1,101 @@
+<ion-header>
+  <ion-toolbar class="ion-justify-content-center">
+    <ion-buttons slot="end">
+      <ion-button
+        (click)="cancel()"
+        shape="round"
+        fill="outline"
+        color="medium"
+      >
+        <i class="mdi mdi-close"></i>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <form [formGroup]="gardenForm">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12">
+          <ion-input
+            labelPlacement="floating"
+            label="Title"
+            formControlName="title"
+            fill="outline"
+          ></ion-input>
+        </ion-col>
+        <ion-col size="12">
+          <ion-textarea
+            labelPlacement="floating"
+            label="Description"
+            formControlName="description"
+            fill="outline"
+          ></ion-textarea>
+        </ion-col>
+        <ion-col size="12">
+          <ion-select
+            multiple="true"
+            labelPlacement="floating"
+            label="Products"
+            formControlName="productTypes"
+            fill="outline"
+          >
+            <ion-select-option
+              *ngFor="let option of productOptions"
+              [value]="option.value"
+              >{{ option.key }}</ion-select-option
+            >
+          </ion-select>
+        </ion-col>
+        <form [formGroup]="ruleForm" class="w-100">
+          <ion-grid>
+            <ion-row>
+              <ion-col size="6">
+                <ion-checkbox formControlName="events">Events</ion-checkbox>
+              </ion-col>
+              <ion-col size="6">
+                <ion-checkbox formControlName="pets">Pets</ion-checkbox>
+              </ion-col>
+              <ion-col size="12">
+                <ion-input
+                  labelPlacement="floating"
+                  label="Number of Guests limit"
+                  formControlName="numberOfGuest"
+                  fill="outline"
+                  type="number"
+                ></ion-input>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </form>
+        <ion-col size="12">
+          <ion-input
+            labelPlacement="floating"
+            label="Address"
+            formControlName="address"
+            fill="outline"
+          ></ion-input>
+        </ion-col>
+        <ion-col
+          size="12"
+          *ngIf="!!images?.length"
+          class="d-flex flex-row justify-content-center"
+        >
+          <ion-img
+            *ngFor="let photo of photos"
+            [src]="photo.webPath"
+            class="m-1"
+            (click)="openPhoto(photo.path)"
+          >
+          </ion-img>
+        </ion-col>
+        <ion-col size="12" class="d-flex mt-4">
+          <ion-button class="mx-auto" color="medium" (click)="uploadPhoto()">
+            <i class="mdi mdi-camera"></i>
+          </ion-button>
+          <ion-button class="mx-auto" (click)="save()">Save</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>

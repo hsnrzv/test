@@ -1,0 +1,21 @@
+swiper-container {
+  --swiper-theme-color: var(--ion-color-favorite)
+}
+.ratio {
+  --bs-aspect-ratio: 100%
+}
+
+ion-item::part(native)  {
+  --padding-top: 15px;
+  --padding-bottom: 15px;
+}
+
+ion-popover {
+  --width: 100%;
+}
+
+.map {
+  width: 100vw;
+  height: 250px;
+  padding: 8px;
+}
