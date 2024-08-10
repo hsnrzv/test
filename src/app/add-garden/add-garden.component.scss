@@ -2,3 +2,14 @@ ion-img {
   width: 100px;
   height: 100px;
 }
+
+.image-container {
+  position: relative;
+  text-align: center;
+}
+
+.delete-icon {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+}

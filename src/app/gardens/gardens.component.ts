@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { GardenItemComponent } from '@app/gardens/garden-item/garden-item.component';
 import { AsyncPipe, NgForOf } from '@angular/common';
 import { Observable, of } from 'rxjs';
 import { Garden } from '@app/domain/garden';
 import { GardenService } from '@app/core/store/garden/garden.service';
 import { IonicModule } from '@ionic/angular';
+import {User} from "@app/domain/api-response/user-response.model";
 
 @Component({
   selector: 'app-gardens',

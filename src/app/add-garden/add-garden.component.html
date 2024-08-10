@@ -4,10 +4,9 @@
       <ion-button
         (click)="cancel()"
         shape="round"
-        fill="outline"
         color="medium"
       >
-        <i class="mdi mdi-close"></i>
+        <ion-icon slot="icon-only" name="close-circle-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
@@ -16,6 +15,34 @@
   <form [formGroup]="gardenForm">
     <ion-grid>
       <ion-row>
+        <ion-col size="12" class="d-flex mt-4">
+          <ion-button class="mx-auto" shape="round" color="medium" (click)="uploadPhoto()">
+            <ion-icon slot="icon-only" name="camera-outline"></ion-icon>
+          </ion-button>
+        </ion-col>
+        <ion-col
+          size="12"
+          *ngIf="!!images?.length"
+          class="d-flex flex-row justify-content-center my-2"
+        >
+          <div *ngFor="let image of images; let i=index" class="image-container">
+            <ion-buttons class="delete-icon">
+              <ion-button
+                (click)="deleteImage(i)"
+                shape="round"
+                color="medium"
+              >
+                <ion-icon slot="icon-only" name="close-circle-outline"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+            <ion-img
+              [src]="image"
+              class="m-1"
+              (click)="openPhoto(image)"
+            >
+            </ion-img>
+          </div>
+        </ion-col>
         <ion-col size="12">
           <ion-input
             labelPlacement="floating"
@@ -76,23 +103,7 @@
             fill="outline"
           ></ion-input>
         </ion-col>
-        <ion-col
-          size="12"
-          *ngIf="!!images?.length"
-          class="d-flex flex-row justify-content-center"
-        >
-          <ion-img
-            *ngFor="let photo of photos"
-            [src]="photo.webPath"
-            class="m-1"
-            (click)="openPhoto(photo.path)"
-          >
-          </ion-img>
-        </ion-col>
         <ion-col size="12" class="d-flex mt-4">
-          <ion-button class="mx-auto" color="medium" (click)="uploadPhoto()">
-            <i class="mdi mdi-camera"></i>
-          </ion-button>
           <ion-button class="mx-auto" (click)="save()">Save</ion-button>
         </ion-col>
       </ion-row>

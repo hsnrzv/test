@@ -7,23 +7,23 @@ import {
   ViewChild,
 } from '@angular/core';
 import {
-  IonAvatar,
-  IonButton,
-  IonButtons,
-  IonCol,
-  IonContent,
-  IonDatetime,
-  IonFooter,
-  IonGrid,
-  IonHeader,
-  IonItem,
-  IonLabel,
-  IonList,
-  IonPopover,
-  IonRow,
-  IonText,
-  IonToolbar,
-  ModalController,
+    IonAvatar,
+    IonButton,
+    IonButtons,
+    IonCol,
+    IonContent,
+    IonDatetime,
+    IonFooter,
+    IonGrid,
+    IonHeader, IonIcon,
+    IonItem,
+    IonLabel,
+    IonList,
+    IonPopover,
+    IonRow,
+    IonText,
+    IonToolbar,
+    ModalController,
 } from '@ionic/angular/standalone';
 import { Garden } from '@app/domain/garden';
 import { FormsModule } from '@angular/forms';
@@ -44,6 +44,8 @@ import { fromLonLat } from 'ol/proj';
 import VectorLayer from 'ol/layer/Vector';
 import VectorSource from 'ol/source/Vector';
 import * as dayjs from 'dayjs';
+import {addIcons} from "ionicons";
+import {cameraOutline, closeCircleOutline} from "ionicons/icons";
 
 // Step 2: Add the following line...
 register();
@@ -53,30 +55,31 @@ register();
   templateUrl: './garden-overview.component.html',
   styleUrls: ['./garden-overview.component.scss'],
   standalone: true,
-  imports: [
-    IonButton,
-    IonButtons,
-    IonHeader,
-    IonToolbar,
-    FormsModule,
-    IonCol,
-    IonContent,
-    IonGrid,
-    IonRow,
-    NgForOf,
-    SwiperDirective,
-    NgOptimizedImage,
-    NgStyle,
-    IonText,
-    IonList,
-    IonItem,
-    IonAvatar,
-    IonLabel,
-    IonPopover,
-    NgIf,
-    IonDatetime,
-    IonFooter,
-  ],
+    imports: [
+        IonButton,
+        IonButtons,
+        IonHeader,
+        IonToolbar,
+        FormsModule,
+        IonCol,
+        IonContent,
+        IonGrid,
+        IonRow,
+        NgForOf,
+        SwiperDirective,
+        NgOptimizedImage,
+        NgStyle,
+        IonText,
+        IonList,
+        IonItem,
+        IonAvatar,
+        IonLabel,
+        IonPopover,
+        NgIf,
+        IonDatetime,
+        IonFooter,
+        IonIcon,
+    ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class GardenOverviewComponent implements OnInit {
@@ -96,6 +99,7 @@ export class GardenOverviewComponent implements OnInit {
       spaceBetween: 10,
       navigation: true,
     };
+    addIcons({ closeCircleOutline });
   }
 
   public cancel(): Promise<boolean> {

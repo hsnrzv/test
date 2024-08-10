@@ -7,7 +7,7 @@ import {
 } from '@app/core/store/garden/garden.selectors';
 import { Garden } from '@app/domain/garden';
 import { GardenState } from '@app/core/store/garden/garden.reducer';
-import { addGarden, updateGarden } from '@app/core/store/garden/garden.actions';
+import {addGarden, removeGarden, updateGarden} from '@app/core/store/garden/garden.actions';
 
 @Injectable({
   providedIn: 'root',
@@ -29,5 +29,9 @@ export class GardenService {
 
   public updateGarden(garden: Garden): void {
     this.store$.dispatch(updateGarden({ garden }));
+  }
+
+  public removeGarden(garden: Garden): void {
+    this.store$.dispatch(removeGarden({ garden }));
   }
 }

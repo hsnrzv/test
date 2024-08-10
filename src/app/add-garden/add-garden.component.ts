@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {
   IonButton,
   IonButtons,
@@ -6,7 +6,7 @@ import {
   IonCol,
   IonContent,
   IonGrid,
-  IonHeader,
+  IonHeader, IonIcon,
   IonImg,
   IonInput,
   IonItem,
@@ -33,6 +33,8 @@ import { NgForOf, NgIf } from '@angular/common';
 import { ProductType } from '@app/domain/enums/product-type';
 import { CapacitorPlatformService } from '@app/core/service/platform/capacitor-platform.service';
 import { Photo } from '@capacitor/camera';
+import {addIcons} from "ionicons";
+import {cameraOutline, closeCircleOutline} from "ionicons/icons";
 
 @Component({
   selector: 'app-add-garden',
@@ -59,9 +61,12 @@ import { Photo } from '@capacitor/camera';
     IonItem,
     NgIf,
     IonImg,
+    IonIcon,
   ],
 })
 export class AddGardenComponent implements OnInit {
+  @Input() garden: Garden | undefined;
+
   public gardenForm!: FormGroup;
   public ruleForm!: FormGroup;
   public photos: Photo[] = [];
@@ -76,7 +81,9 @@ export class AddGardenComponent implements OnInit {
     private gardenService: GardenService,
     private userService: UserService,
     private capacitorService: CapacitorPlatformService,
-  ) {}
+  ) {
+    addIcons({ cameraOutline, closeCircleOutline });
+  }
 
   ngOnInit(): void {
     this.ruleForm = new FormGroup({
@@ -92,6 +99,17 @@ export class AddGardenComponent implements OnInit {
       rule: this.ruleForm,
       title: new FormControl('', Validators.required),
     });
+
+    if (this.garden) {
+      this.initGardenForm();
+    }
+  }
+
+  private initGardenForm(){
+    this.gardenForm.patchValue(this.garden!);
+    if (this.garden?.images?.length){
+      this.images = this.garden.images;
+    }
   }
 
   public async save(): Promise<void> {
@@ -135,5 +153,9 @@ export class AddGardenComponent implements OnInit {
     if (!!path) {
       this.capacitorService.openPhoto(path);
     }
+  }
+
+  deleteImage(index: number) {
+    this.images = this.images.filter((image, i) => i !== index);
   }
 }
